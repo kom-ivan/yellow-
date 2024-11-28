@@ -20,7 +20,7 @@ class Example(QMainWindow, Ui_MainWindow):
     def draw(self):
         self.figure = 'circle'
         self.size = random.randint(10, 100)
-        self.color = QColor(255, 255, 0)
+        self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         self.flag = True
         self.update()
 
@@ -28,8 +28,8 @@ class Example(QMainWindow, Ui_MainWindow):
         if self.flag:
             qp = QPainter()
             qp.begin(self)
-            qp.setPen(QColor(self.color))
-            qp.setBrush(QColor(self.color))
+            qp.setPen(QColor(*self.color))
+            qp.setBrush(QColor(*self.color))
             self.x, self.y = random.randint(100, SCREEN_SIZE[0] - 100), random.randint(100, SCREEN_SIZE[1] - 100)
             if self.figure == 'circle':
                 qp.drawEllipse(self.x, self.y, self.size, self.size)
